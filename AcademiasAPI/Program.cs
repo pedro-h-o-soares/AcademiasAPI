@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 using AcademiasAPI.Domain.Services;
 using AcademiasAPI.Domain.Services.Interfaces;
@@ -52,7 +53,12 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, 
+    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+
+});
 
 builder.Services.AddExceptionHandler<HttpExceptionHandler>();
 builder.Services.AddProblemDetails();

@@ -17,6 +17,11 @@ namespace AcademiasAPI.Presentation.Controllers;
 [AllowAnonymous]
 public class AuthController(IUsuarioService usuarioService, IConfiguration configuration) : ControllerBase
 {
+    /// <summary>
+    /// Authenticates user in the application
+    /// </summary>
+    /// <param name="dto">User credentials</param>
+    /// <returns>The user information and the auth cookie</returns>
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {

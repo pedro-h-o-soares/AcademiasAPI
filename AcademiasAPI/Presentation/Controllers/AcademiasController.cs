@@ -12,12 +12,22 @@ namespace AcademiasAPI.Presentation.Controllers;
 [Authorize(Roles = "ADMIN")]
 public class AcademiasController(IAcademiaService service) : BaseController<Academia, ReadAcademiaDto, CreateAcademiaDto>(service)
 {
+    /// <summary>
+    /// Searches a list of gyms
+    /// </summary>
+    /// <param name="paginateRequestDto">Pagination parameters</param>
+    /// <returns>A pginated list of gyms</returns>
     [HttpGet]
     public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
-
+    
+    /// <summary>
+    /// Search for a specific gym
+    /// </summary>
+    /// <param name="id">ID of desired gym</param>
+    /// <returns>The desired gym if exists, else 404</returns>
     [HttpGet("{id}")]
     public new IActionResult GetById(Guid id)
     {
