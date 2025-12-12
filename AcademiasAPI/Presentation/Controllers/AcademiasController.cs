@@ -13,13 +13,13 @@ namespace AcademiasAPI.Presentation.Controllers;
 public class AcademiasController(IAcademiaService service) : BaseController<Academia, ReadAcademiaDto, CreateAcademiaDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }

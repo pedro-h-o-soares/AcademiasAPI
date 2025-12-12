@@ -13,31 +13,31 @@ namespace AcademiasAPI.Presentation.Controllers;
 public class TreinosController(ITreinoService service) : BaseController<Treino, ReadTreinoDto, CreateTreinoDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }
 
     [HttpPost]
-    public override IActionResult Create(CreateTreinoDto dto)
+    public new IActionResult Create(CreateTreinoDto dto)
     {
         return base.Create(dto);
     }
 
     [HttpPut("{id}")]
-    public override IActionResult Update(Guid id, CreateTreinoDto dto)
+    public new IActionResult Update(Guid id, CreateTreinoDto dto)
     {
         return base.Update(id, dto);
     }
 
     [HttpDelete("{id}")]
-    public override IActionResult Delete(Guid id)
+    public new IActionResult Delete(Guid id)
     {
         return base.Delete(id);
     }

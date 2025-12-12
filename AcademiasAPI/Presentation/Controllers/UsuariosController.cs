@@ -13,33 +13,33 @@ namespace AcademiasAPI.Presentation.Controllers;
 public class UsuariosController(IUsuarioService service) : BaseController<Usuario, ReadUsuarioDto, CreateUsuarioDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }
 
     [HttpPost]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Create([FromBody] CreateUsuarioDto createDto)
+    public new IActionResult Create([FromBody] CreateUsuarioDto createDto)
     {
         return  base.Create(createDto);
     }
 
     [HttpPut("{id}")]
-    public override IActionResult Update(Guid id, CreateUsuarioDto dto)
+    public new IActionResult Update(Guid id, CreateUsuarioDto dto)
     {
         return base.Update(id, dto);
     }
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Delete(Guid id)
+    public new IActionResult Delete(Guid id)
     {
         return base.Delete(id);
     }

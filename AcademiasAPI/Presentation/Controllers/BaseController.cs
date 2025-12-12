@@ -13,29 +13,29 @@ where TEntity : Base
 where TReadDto : ReadBaseDto
 where TCreateDto : CreateBaseDto
 {
-    public virtual IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
+    protected IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return Ok(service.Get(paginateRequestDto));
     }
 
-    public virtual IActionResult GetById(Guid id)
+    protected IActionResult GetById(Guid id)
     {
         return Ok(service.GetById(id));
     }
 
-    public virtual IActionResult Create([FromBody] TCreateDto dto)
+    protected IActionResult Create(TCreateDto dto)
     {
         var created = service.Create(dto);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
-    public virtual IActionResult Update(Guid id, [FromBody] TCreateDto dto)
+    protected IActionResult Update(Guid id, TCreateDto dto)
     {
         service.Update(id, dto);
         return NoContent();
     }
 
-    public virtual IActionResult Delete(Guid id)
+    protected IActionResult Delete(Guid id)
     {
         service.Delete(id);
         return NoContent();

@@ -14,27 +14,27 @@ namespace AcademiasAPI.Presentation.Controllers;
 public class MaquinasController(IMaquinaService service) : BaseController<Maquina, ReadMaquinaDto, CreateMaquinaDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }
 
     [HttpPost]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Create([FromBody] CreateMaquinaDto createDto)
+    public new IActionResult Create([FromBody] CreateMaquinaDto createDto)
     {
         return base.Create(createDto);
     }
 
     [HttpPost("{id}/foto")]
     [Authorize(Roles = "ADMIN")]
-    public async Task<IActionResult> UploadFoto(Guid id, [FromForm] IFormFile file)
+    public async Task<IActionResult> UploadFoto(Guid id, IFormFile file)
     {
         await service.UpdateFotoMaquinaAsync(id, file);
         return Ok();
@@ -42,14 +42,14 @@ public class MaquinasController(IMaquinaService service) : BaseController<Maquin
 
     [HttpPut("{id}")]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Update(Guid id, CreateMaquinaDto dto)
+    public new IActionResult Update(Guid id, CreateMaquinaDto dto)
     {
         return base.Update(id, dto);
     }
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Delete(Guid id)
+    public new IActionResult Delete(Guid id)
     {
         return base.Delete(id);
     }

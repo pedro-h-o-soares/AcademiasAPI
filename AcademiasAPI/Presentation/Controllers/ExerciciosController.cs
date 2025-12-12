@@ -13,27 +13,27 @@ namespace AcademiasAPI.Presentation.Controllers;
 public class ExerciciosController(IExercicioService service) : BaseController<Exercicio, ReadExercicioDto, CreateExercicioDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }
 
     [HttpPost]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Create(CreateExercicioDto dto)
+    public new IActionResult Create(CreateExercicioDto dto)
     {
         return base.Create(dto);
     }
 
     [HttpPost("{id}/video")]
     [Authorize(Roles = "ADMIN")]
-    public async Task<IActionResult> UpdateVideo(Guid id, [FromForm] IFormFile file)
+    public async Task<IActionResult> UpdateVideo(Guid id, IFormFile file)
     {
         await service.UpdateVideoExercicioAsync(id, file);
         return Ok();
@@ -41,14 +41,14 @@ public class ExerciciosController(IExercicioService service) : BaseController<Ex
 
     [HttpPut("{id}")]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Update(Guid id, CreateExercicioDto dto)
+    public new IActionResult Update(Guid id, CreateExercicioDto dto)
     {
         return base.Update(id, dto);
     }
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "ADMIN")]
-    public override IActionResult Delete(Guid id)
+    public new IActionResult Delete(Guid id)
     {
         return base.Delete(id);
     }

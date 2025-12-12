@@ -15,25 +15,25 @@ public class SeriesController(ISerieService service)
     : BaseController<Serie, ReadSerieDto, CreateSerieDto>(service)
 {
     [HttpGet]
-    public override IActionResult Get(PaginateRequestDto paginateRequestDto)
+    public new IActionResult Get([FromQuery] PaginateRequestDto paginateRequestDto)
     {
         return base.Get(paginateRequestDto);
     }
 
     [HttpGet("{id}")]
-    public override IActionResult GetById(Guid id)
+    public new IActionResult GetById(Guid id)
     {
         return base.GetById(id);
     }
 
     [HttpPost]
-    public override IActionResult Create(CreateSerieDto dto)
+    public new IActionResult Create(CreateSerieDto dto)
     {
         return base.Create(dto);
     }
 
     [HttpPut("{id}")]
-    public override IActionResult Update(Guid id, CreateSerieDto dto)
+    public new IActionResult Update(Guid id, CreateSerieDto dto)
     {
         return base.Update(id, dto);
     }
@@ -55,7 +55,7 @@ public class SeriesController(ISerieService service)
     }
 
     [HttpDelete("{id}")]
-    public override IActionResult Delete(Guid id)
+    public new IActionResult Delete(Guid id)
     {
         return base.Delete(id);
     }
